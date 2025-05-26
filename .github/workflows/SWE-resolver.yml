@@ -22,10 +22,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           llm_api_key: ${{ secrets.OPENAI_API_KEY }}
-          model_name: 'gpt-4o'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          llm_api_key: ${{ secrets.OPENAI_API_KEY }}
           model_name: ${{ vars.SWE_AGENT_MODEL || 'gpt-4o' }}
           timeout_minutes: 30
           max_patch_size: 50000
