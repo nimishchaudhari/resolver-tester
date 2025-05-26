@@ -30,7 +30,7 @@ jobs:
       
       - name: Run SWE-Agent
         id: swe-agent
-        uses: nimishchaudhari/SWE-agent-resolver@swe-agent-fix-issue-10-1748294274
+        uses: nimishchaudhari/SWE-agent-resolver@swe-agent-fix-issue-12-1748294400
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           llm_api_key: ${{ secrets.OPENAI_API_KEY }}
