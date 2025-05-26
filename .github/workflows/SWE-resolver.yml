@@ -1,4 +1,4 @@
-name: Test SWE-Agent Resolver
+name: SWE-Agent Issue Resolver
 
 on:
   issue_comment:
@@ -9,13 +9,23 @@ permissions:
   contents: read
 
 jobs:
-  resolve_with_swe_agent:
+  resolve_issue:
+    name: Resolve Issue with SWE-Agent
     runs-on: ubuntu-latest
-    if: github.event.comment.user.login != 'github-actions[bot]'
+    if: |
+      github.event.comment.user.login != 'github-actions[bot]' &&
+      contains(github.event.comment.body, '@swe-agent')
+    
     steps:
-      - name: Run SWE-Agent Resolver Action
-        uses: nimishchaudhari/SWE-agent-resolver@main
+      - name: Run SWE-Agent Resolver
+        uses: ./
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           llm_api_key: ${{ secrets.OPENAI_API_KEY }}
-          model_name: ${{ vars.SWE_AGENT_MODEL }}  # Use vars for environment variables
+          model_name: 'gpt-4o'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          llm_api_key: ${{ secrets.OPENAI_API_KEY }}
+          model_name: ${{ vars.SWE_AGENT_MODEL || 'gpt-4o' }}
+          timeout_minutes: 30
+          max_patch_size: 50000
