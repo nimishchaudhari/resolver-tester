@@ -19,7 +19,7 @@ jobs:
     
     steps:
       - name: Run SWE-Agent Resolver with Progress Tracking
-        uses: nimishchaudhari/SWE-agent-resolver@fix-sweagent-invocation
+        uses: nimishchaudhari/SWE-agent-resolver@v0.01
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           llm_api_key: ${{ secrets.OPENAI_API_KEY }}
