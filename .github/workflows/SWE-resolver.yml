@@ -18,10 +18,9 @@ jobs:
     
     steps:
       - name: Run SWE-Agent Resolver
-        uses: ./
+        uses: nimishchaudhari/SWE-agent-resolver@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           llm_api_key: ${{ secrets.OPENAI_API_KEY }}
           model_name: ${{ vars.SWE_AGENT_MODEL || 'gpt-4o' }}
           timeout_minutes: 30
-          max_patch_size: 50000
