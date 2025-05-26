@@ -8,6 +8,7 @@ permissions:
   issues: write
   contents: write
   pull-requests: write
+  actions: write
 
 jobs:
   generate-patch:
@@ -30,13 +31,14 @@ jobs:
       
       - name: Run SWE-Agent
         id: swe-agent
-        uses: nimishchaudhari/SWE-agent-resolver@main
+        uses: nimishchaudhari/SWE-agent-resolver@cached_v0.01
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           llm_api_key: ${{ secrets.OPENAI_API_KEY }}
           model_name: ${{ vars.SWE_AGENT_MODEL || 'gpt-4o' }}
           trigger_phrase: '@swe-agent'
           timeout_minutes: 45
+          use_prebuilt_image: 'true'  # Use cached image for faster execution
 
   apply-patch:
     name: Apply Patch and Create PR
