@@ -31,7 +31,7 @@ jobs:
       
       - name: Run SWE-Agent
         id: swe-agent
-        uses: nimishchaudhari/swe-agent-resolver@enhance-comment-interactions
+        uses: nimishchaudhari/swe-agent-resolver@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # API Keys - provide at least one (store as repository secrets)
