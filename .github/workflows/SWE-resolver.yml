@@ -2,6 +2,24 @@ name: 'SWE-Agent Resolver'
 description: 'AI-powered code assistance using SWE-agent with LiteLLM support for multiple AI providers'
 author: 'nimishchaudhari'
 
+on:
+  issue_comment:
+    types: [created, edited]
+  pull_request:
+    types: [opened, synchronize, reopened]
+  issues:
+    types: [opened, edited]
+  workflow_dispatch:
+    inputs:
+      target_issue:
+        description: 'Issue number to process'
+        required: false
+        type: string
+      custom_model:
+        description: 'Override model for this run'
+        required: false
+        type: string
+
 branding:
   icon: 'code'
   color: 'blue'
@@ -168,3 +186,4 @@ runs:
     INPUT_FALLBACK_MODELS: ${{ inputs.fallback_models }}
     INPUT_WORKSPACE_TIMEOUT: ${{ inputs.workspace_timeout }}
     INPUT_DEBUG_MODE: ${{ inputs.debug_mode }}
+    
